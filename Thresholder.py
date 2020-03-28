@@ -23,7 +23,7 @@ class Thresholder:
             return self.thresholdtable[index](img)
 
     def thresholdotsu(self, img):
-        th, imgth = cv2.threshold(img, 0, 255, cv2.THRESH_BINARY+cv2.THRESH_OTSU)
+        th, imgth = cv2.threshold(img, 0, 255, cv2.THRESH_BINARY_INV+cv2.THRESH_OTSU)
         return th, imgth
 
     def thresholdridler(self, img):
@@ -39,7 +39,7 @@ class Thresholder:
             diff = abs(th_old - th_new)
             th_old = th_new
 
-        th, imgth = cv2.threshold(img, th_new, 255, cv2.THRESH_BINARY)
+        th, imgth = cv2.threshold(img, th_new, 255, cv2.THRESH_BINARY_INV)
         return th, imgth
 
     def thresholdkapur(self, img):
@@ -60,7 +60,7 @@ class Thresholder:
                 Hmax = Hsum
                 th = i
 
-        th, imgth = cv2.threshold(img, th, 255, cv2.THRESH_BINARY)
+        th, imgth = cv2.threshold(img, th, 255, cv2.THRESH_BINARY_INV)
         return th, imgth
 
     def thresholdkittler(self, img):
