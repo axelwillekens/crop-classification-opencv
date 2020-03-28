@@ -64,20 +64,11 @@ class Thresholder:
         return th, imgth
 
     def thresholdkittler(self, img):
+        # How to calculate , histogram is not complete
         ret = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-
-        for i in range(0, img.shape[0]):
-            for j in range(0, img.shape[1]):
-                pass
-
         return ret
 
     def thresholdrosin(self, img):
+        # How to implement, histogram is not complete
         ret = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-
-        for i in range(0, img.shape[0]):
-            for j in range(0, img.shape[1]):
-                pass
-
-
         return ret
