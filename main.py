@@ -6,15 +6,15 @@ import numpy as np
 from matplotlib import pyplot as plt
 
 if __name__ == "__main__":
-    path = "../images/test/mais.jpg"
+    path = "../images/dataset_potato_cash_mais/20190622_143436_644-191200028_e100192_g0_c0.jpg"
     img = cv2.imread(path)
 
     indexer = Indexer.Indexer()
     thresholder = Thresholder.Thresholder()
     featureExtractor = FeatureExtractor.FeatureExtractor()
 
-    idxmethod = "ExG"
-    thmethod = "kapur"
+    idxmethod = "COM"
+    thmethod = "Ridler"
     ftype = "SIFT"
 
     # Show indexing
@@ -35,20 +35,21 @@ if __name__ == "__main__":
     # plt.show()
 
     # Show Thresholding
-    imgidx = indexer.index(idxmethod, img)
-    th, imgth = thresholder.threshold(thmethod, imgidx)
-    thtitles = ["%s Threshold method" % thmethod, "Histogram, threshold on %d" % th]
-
-    plt.subplot(1, 2, 1), plt.imshow(imgth)
-    plt.title(thtitles[0]), plt.xticks([]), plt.yticks([])
-    plt.subplot(1, 2, 2), plt.hist(imgidx.ravel(), 256)
-    plt.title(thtitles[1]), plt.xticks(range(0, 256, 50)), plt.yticks(range(0, 5000, 1000)), \
-        plt.xlabel("Pixel Value"), plt.ylabel("Number of pixels"), plt.axvline(th)
-    plt.show()
+    # imgidx = indexer.index(idxmethod, img)
+    # th, imgth = thresholder.threshold(thmethod, idxmethod, imgidx)
+    # thtitles = ["%s Threshold method" % thmethod, "Histogram, threshold on %d" % th]
+    # flatimg = imgidx.ravel()
+    #
+    # plt.subplot(1, 2, 1), plt.imshow(imgth)
+    # plt.title(thtitles[0]), plt.xticks([]), plt.yticks([])
+    # plt.subplot(1, 2, 2), plt.hist(flatimg, 256)
+    # plt.title(thtitles[1]), plt.xticks(range(0, 256, 50)), plt.yticks(range(0, max(flatimg), 1000)), \
+    #     plt.xlabel("Pixel Value"), plt.ylabel("Number of pixels"), plt.axvline(th)
+    # plt.show()
 
     # Show FeatureExtractor
     imgidx = indexer.index(idxmethod, img)
-    th, imgth = thresholder.threshold(thmethod, imgidx)
+    th, imgth = thresholder.threshold(thmethod, idxmethod, imgidx)
     kp, des = featureExtractor.feature(ftype, img, imgth)
 
     cv2.imshow("SIFT feature extraction", cv2.drawKeypoints(img, kp, None))

@@ -13,11 +13,8 @@ class Indexer:
         Supported indexes: ExG, ExGR, NDI, CIVE, VEG, COM, GA, HIT
         """
         index = str(index).lower()
-        if index not in self.indextable.keys():
-            print("ERROR: Index does not exist -- No index applied on the image.")
-            return img
-        else:
-            return self.indextable[index](img)
+        assert index in self.indextable.keys(), "Assert: Index does not exist."
+        return self.indextable[index](img)
 
     def indexExG(self, img):
         ret = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
@@ -97,9 +94,9 @@ class Indexer:
         for i in range(0, img.shape[0]):
             for j in range(0, img.shape[1]):
                 a = 0.667
-                B = float(img[i][j][0])
+                B = float(img[i][j][0]) + 0.001  # otherwise division by zero
                 G = float(img[i][j][1])
-                R = float(img[i][j][2])
+                R = float(img[i][j][2]) + 0.001  # otherwise division by zero
 
                 index = G / (pow(R, a) * pow(B, (1-a)))
                 ret[i][j] = index * 255
@@ -112,9 +109,9 @@ class Indexer:
         for i in range(0, img.shape[0]):
             for j in range(0, img.shape[1]):
                 a = 0.667
-                B = float(img[i][j][0])
+                B = float(img[i][j][0]) + 0.001  # otherwise division by zero
                 G = float(img[i][j][1])
-                R = float(img[i][j][2])
+                R = float(img[i][j][2]) + 0.001  # otherwise division by zero
 
                 RGB = R+G+B
                 r = R / RGB
@@ -136,9 +133,9 @@ class Indexer:
         for i in range(0, img.shape[0]):
             for j in range(0, img.shape[1]):
                 a = 0.667
-                B = float(img[i][j][0])
+                B = float(img[i][j][0]) + 0.001  # otherwise division by zero
                 G = float(img[i][j][1])
-                R = float(img[i][j][2])
+                R = float(img[i][j][2]) + 0.001  # otherwise division by zero
 
                 RGB = R+G+B
                 r = R / RGB
