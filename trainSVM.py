@@ -16,6 +16,15 @@ def imglist(path):
     return [os.path.join(path, f) for f in os.listdir(path)]
 
 
+indexer = Indexer.Indexer()
+thresholder = Thresholder.Thresholder()
+featureExtractor = FeatureExtractor.FeatureExtractor()
+
+idxmethod = "COM"
+thmethod = "Ridler"
+ftype = "SIFT"
+
+
 if __name__ == "__main__":
     train_path = 'dataset/train'
     training_names = os.listdir(train_path)
@@ -32,14 +41,6 @@ if __name__ == "__main__":
         class_id += 1
 
     des_list = []  # description list
-
-    indexer = Indexer.Indexer()
-    thresholder = Thresholder.Thresholder()
-    featureExtractor = FeatureExtractor.FeatureExtractor()
-
-    idxmethod = "COM"
-    thmethod = "Ridler"
-    ftype = "SIFT"
 
     for img_path in img_paths:
         img = cv2.imread(img_path)

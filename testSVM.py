@@ -24,6 +24,14 @@ def showconfusionmatrix(cm):
     pl.show()
 
 
+indexer = Indexer.Indexer()
+thresholder = Thresholder.Thresholder()
+featureExtractor = FeatureExtractor.FeatureExtractor()
+
+idxmethod = "COM"
+thmethod = "Ridler"
+ftype = "SIFT"
+
 if __name__ == "__main__":
     # loat the classifier, class names, scaler, number of clusters and vocabulary
     # from stored pickle file (generated during training)
@@ -49,14 +57,6 @@ if __name__ == "__main__":
     # Create feature extraction and keypoint detector objects
     # Create list where all the descriptors will be stored
     des_list = []
-
-    indexer = Indexer.Indexer()
-    thresholder = Thresholder.Thresholder()
-    featureExtractor = FeatureExtractor.FeatureExtractor()
-
-    idxmethod = "COM"
-    thmethod = "Ridler"
-    ftype = "SIFT"
 
     for img_path in img_paths:
         img = cv2.imread(img_path)
