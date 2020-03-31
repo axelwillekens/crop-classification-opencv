@@ -58,7 +58,7 @@ def testFeatureExtraction(img):
 
 
 if __name__ == "__main__":
-    img = cv2.imread("dataset/train/potato/potato_1.jpg")
+    img = cv2.imread("../dataset/train/potato/potato_1.jpg")
     # testIndices(img)
     testThresholding(img)
 

@@ -11,11 +11,9 @@ class FeatureExtractor:
         Supported indexes: SIFT, SURF
         """
         featuretype = str(featuretype).lower()
-        if featuretype not in self.featureTable.keys():
-            print("ERROR: Feature does not exist -- None returned")
-            return None
-        else:
-            return self.featureTable[featuretype](img, mask)
+        assert featuretype in self.featureTable.keys(), "Feature does not exist"
+
+        return self.featureTable[featuretype](img, mask)
 
     def featureSIFT(self, img, mask):
         sift = cv2.xfeatures2d.SIFT_create()
